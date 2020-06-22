@@ -1,12 +1,13 @@
 import express from "express";
-import pool from "./db";
+import * as bodyParser from 'body-parser'
+import routes from './routes/index'
+
 const app = new express();
 
-app.get("/user", (req, res) => {
-  const userId = req.state.userId;
-  const client = pool.checkoutClient();
-  //do a lookup
-  client.close();
-});
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
-app.listen(3001);
+app.use('/user', routes);
+
+const port = process.env.PORT || 3001;
+app.listen(port, () => console.log(`Server started on port ${port}`));
