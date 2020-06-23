@@ -44,4 +44,63 @@ router.post("/create", (req, res) => {
     });
 });
 
+// Get User ID By Email
+router.get("/byEmail", (req, res) => {
+  admin.auth().getUserByEmail(req.body.email)
+    .then(function (userRecord) {
+      // See the UserRecord reference doc for the contents of userRecord.
+      console.log('Successfully fetched user data:', userRecord.toJSON());
+      return res.send({
+        success: true,
+        message: ('Successfully fetched user data:', userRecord.toJSON())
+      });
+    })
+    .catch(function (error) {
+      console.log('Error fetching user data:', error);
+      return res.send({
+        success: false,
+        message: ('Error fetching user data:', error.message)
+      });
+    });
+});
+
+// Get User ID By Phone
+router.get("/byPhone", (req, res) => {
+  admin.auth().getUserByPhoneNumber(req.body.phoneNumber)
+    .then(function (userRecord) {
+      // See the UserRecord reference doc for the contents of userRecord.
+      console.log('Successfully fetched user data:', userRecord.toJSON());
+      return res.send({
+        success: true,
+        message: ('Successfully fetched user data:', userRecord.toJSON())
+      });
+    })
+    .catch(function (error) {
+      console.log('Error fetching user data:', error);
+      return res.send({
+        success: false,
+        message: ('Error fetched user data:', error.message)
+      });
+    });
+});
+
+// Delete User By ID
+router.delete("/:id", (req, res) => {
+  admin.auth().deleteUser(req.params.id)
+    .then(function () {
+      console.log('Successfully deleted user');
+      return res.send({
+        success: true,
+        message: ('Successfully deleted user')
+      });
+    })
+    .catch(function (error) {
+      console.log('Error deleting user:', error);
+      return res.send({
+        success: false,
+        message: ('Error deleting user:', error.message)
+      });
+    });
+});
+
 module.exports = router;
