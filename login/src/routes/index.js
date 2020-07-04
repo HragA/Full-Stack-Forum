@@ -103,4 +103,44 @@ router.delete("/:id", (req, res) => {
     });
 });
 
+// Create Custom Token
+router.get("/token/:id", (req, res) => {
+  admin.auth().createCustomToken(req.params.id)
+    .then(function (customToken) {
+      // Send token back to client
+      console.log(customToken);
+      return res.send({
+        success: true,
+        message: 'Successfully created custom token'
+      });
+    })
+    .catch(function (error) {
+      console.log('Error creating custom token:', error);
+      return res.send({
+        success: false,
+        message: ('Error creating custom token:', error.message)
+      });
+    });
+});
+
+// Verify Id Token
+router.get("/verifyToken", (req, res) => {
+  console.log(req.body.idToken);
+  admin.auth().verifyIdToken(req.body.idToken)
+    .then(function (decodedToken) {
+      let uid = decodedToken.uid;
+      console.log(uid);
+      return res.send({
+        success: true,
+        message: ('Verified token', uid)
+      });
+    }).catch(function (error) {
+      console.log('Error verifying token:', error);
+      return res.send({
+        success: false,
+        message: ('Error verifying token:', error.message)
+      });
+    });
+});
+
 module.exports = router;
