@@ -1,0 +1,28 @@
+{
+  "name": "full-stack-forum",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "concurrently": "^5.3.0"
+  },
+  "scripts": {
+    "client-install": "npm install --prefix client",
+    "server-install": "npm install --prefix login",
+    "server": "npm run dev --prefix login",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \" npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HragA/Full-Stack-Forum.git"
+    
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HragA/Full-Stack-Forum/issues"
+  },
+  "homepage": "https://github.com/HragA/Full-Stack-Forum#readme"
+}

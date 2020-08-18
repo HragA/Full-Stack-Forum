@@ -1,5 +1,5 @@
 # ignore all node modules
-*/node_modules
+*node_modules
 
 # ignore account key
 login/src/serviceAccountKey.json
