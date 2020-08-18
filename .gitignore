@@ -4,3 +4,5 @@
 # ignore account key
 login/src/serviceAccountKey.json
 /login/src/serviceAccountKey.json
+
+*DS_Store
